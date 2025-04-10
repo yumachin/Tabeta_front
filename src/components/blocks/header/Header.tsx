@@ -4,14 +4,19 @@ import Image from "next/image";
 import { assets } from "@/assets/assets";
 import AuthButtons from "./AuthButtons";
 import { usePathname, useRouter } from "next/navigation";
+import HeaderToggle from "./HeaderToggle";
 
-export default function Header() {
+type HeaderProps = {
+  buttonState: number;
+  setButtonState: (state: number) => void;
+}
+
+export default function Header(props: HeaderProps) {
   const pathname = usePathname();
   const router = useRouter();
-  const buttonState = 0;
 
   const handleRoute = () => {
-    console.log("pathnameは", pathname)
+    console.log("pathnameは", pathname);
     if (pathname !== "/auth/signUp" && pathname !== "/auth/signIn") {
       router.push("/dashboard");
     } else {
@@ -21,7 +26,7 @@ export default function Header() {
 
   return (
     <header className="sticky top-0 z-10 bg-white border-b border-gray-200">
-      <div className="flex items-center justify-between h-18 p-2">
+      <div className="flex items-center justify-between h-18 px-4">
         <Image
           src={assets.logo}
           alt="Logo"
@@ -31,21 +36,12 @@ export default function Header() {
         />
         {pathname === "/landing" && <AuthButtons />}
       </div>
-      {pathname === "/dashboard" && (
-        <div className="flex items-center">
-          <button
-            className={`flex-1 py-3 font-medium text-center ${
-              buttonState === 0 ? "text-orange-500" : "text-gray-500"
-            }`}
-          >
-            最新
-          </button>
-          <button
-            className={`flex-1 py-3 font-medium text-center text-gray-500`}
-          >
-            フォロー中
-          </button>
-        </div>
+      {(pathname === "/dashboard" || pathname === "/ff") && (
+        <HeaderToggle 
+          pathname={pathname}
+          buttonState={props.buttonState} 
+          setButtonState={props.setButtonState}
+        />
       )}
     </header>
   );
