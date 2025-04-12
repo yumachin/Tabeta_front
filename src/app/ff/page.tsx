@@ -23,7 +23,6 @@ export default function FFPage() {
   useEffect(() => {
     const fetchFFData = async () => {
       try {
-
         // if (!user_id || !session_id) {
         //   console.error("認証されていません");
         //   setLoading(false);
@@ -111,7 +110,12 @@ export default function FFPage() {
 
   return (
     <>
-      <Header buttonState={buttonState} setButtonState={setButtonState} />
+      <Header
+        onNext={() => sliderRef.current?.slickNext()} 
+        onPrev={() => sliderRef.current?.slickPrev()} 
+        buttonState={buttonState} 
+        setButtonState={setButtonState}
+      />
         {loading ? <Loading /> : (
           <FF
             followers={followers}

@@ -7,9 +7,11 @@ import { usePathname, useRouter } from "next/navigation";
 import HeaderToggle from "./HeaderToggle";
 
 type HeaderProps = {
-  buttonState: number;
-  setButtonState: (state: number) => void;
-}
+  onNext: () => void;
+  onPrev: () => void;
+  buttonState?: number;
+  setButtonState?: (state: number) => void;
+};
 
 export default function Header(props: HeaderProps) {
   const pathname = usePathname();
@@ -36,13 +38,17 @@ export default function Header(props: HeaderProps) {
         />
         {pathname === "/landing" && <AuthButtons />}
       </div>
-      {(pathname === "/dashboard" || pathname === "/ff") && (
-        <HeaderToggle 
-          pathname={pathname}
-          buttonState={props.buttonState} 
-          setButtonState={props.setButtonState}
-        />
-      )}
+      {(pathname === "/dashboard" || pathname === "/ff") &&
+        (props.buttonState === 0 || props.buttonState === 1) &&
+        props.setButtonState && (
+          <HeaderToggle
+            onNext={props.onNext}
+            onPrev={props.onPrev}
+            pathname={pathname}
+            buttonState={props.buttonState}
+            setButtonState={props.setButtonState}
+          />
+        )}
     </header>
   );
 }

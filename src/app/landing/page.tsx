@@ -3,10 +3,10 @@
 import { useState } from "react";
 import Header from "@/components/blocks/header/Header";
 import Loading from "@/components/loading/Loading";
+import Posts from "@/components/posts/Posts";
 
 export default function LandingPage() {
-  const [loading] = useState<boolean>(true);
-
+  const [loading] = useState<boolean>(false);
   // useEffect(() => {
   //   const fetchLPPosts = async () => {
   //     try {
@@ -35,49 +35,10 @@ export default function LandingPage() {
   //   return null;
   // }
 
-  // const posts: GetLPPost[] = [
-  //   {
-  //     id: 1,
-  //     post_user_inf: {
-  //       id: 1,
-  //       user_name: "ゆまちん",
-  //       profile_image_path: "/placeholder.svg?height=40&width=40"
-  //     },
-  //     image_path: "/placeholder.svg?height=600&width=600",
-  //     created_at: "2025-03-09T12:34:56Z",
-  //     likes: 114514,
-  //     description: null
-  //   },
-  //   {
-  //     id: 2,
-  //     post_user_inf: {
-  //       id: 2,
-  //       user_name: "きよさん",
-  //       profile_image_path: "/placeholder.svg?height=40&width=40"
-  //     },
-  //     image_path: "/placeholder.svg?height=600&width=600",
-  //     created_at: "2025-03-07T12:34:56Z",
-  //     likes: 4545,
-  //     description: "牡蠣を食べました！"
-  //   },
-  //   {
-  //     id: 3,
-  //     post_user_inf: {
-  //       id: 3,
-  //       user_name: "こーせい",
-  //       profile_image_path: "/placeholder.svg?height=40&width=40"
-  //     },
-  //     image_path: "/placeholder.svg?height=600&width=600",
-  //     created_at: "2025-03-05T12:34:56Z",
-  //     likes: 123,
-  //     description: "React Native使ったよ!"
-  //   }
-  // ];
-
   return (
     <>
       <Header />
-      {loading ? <Loading /> : <></>}
+      {loading ? <Loading /> : <Posts />}
     </>
   );
 }
