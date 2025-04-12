@@ -1,10 +1,10 @@
 import { Users, UserX } from "lucide-react";
 
-type FFProps = {
+type EmptyFFProps = {
   flag?: string;
 }
 
-export default function FF(props: FFProps) {
+export default function EmptyFF(props: EmptyFFProps) {
   return (
     <div className="flex flex-col items-center justify-center flex-1 px-6 py-12">
       <div className="w-20 h-20 flex items-center justify-center bg-orange-100 rounded-full mb-6">

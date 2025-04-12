@@ -1,6 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
-import FF from "../Empty/FF";
+import EmptyFF from "../Empty/EmptyFF";
 
 type FFAccountsProps = {
   followers?: FFRelation[] | null;
@@ -20,9 +20,9 @@ export default function FFAccounts(props: FFAccountsProps) {
   // const list = props.followers || props.followings;
 
   // if (!props.followers || props.followers.length === 0) {
-  //   return <FF flag="followers" />;
+  //   return <EmptyFF flag="followers" />;
   // } else if (!props.followings || props.followings.length === 0) {
-  //   return <FF />;
+  //   return <EmptyFF />;
   // }
 
   return (

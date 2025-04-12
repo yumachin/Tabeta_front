@@ -1,12 +1,16 @@
 "use client";
 
-import { useState } from "react";
+import { useRef, useState } from "react";
 import Header from "@/components/blocks/header/Header";
 import Loading from "@/components/loading/Loading";
 import Footer from "@/components/blocks/footer/Footer";
+import Posts from "@/components/posts/Posts";
+import Slider from "react-slick";
 
 export default function DashboardPage() {
-  const [loading] = useState<boolean>(true);
+  const [loading] = useState<boolean>(false);
+  const [buttonState, setButtonState] = useState<number>(0);
+  const sliderRef = useRef<Slider | null>(null);
 
   // useEffect(() => {
   //   const fetchLPPosts = async () => {
@@ -77,8 +81,14 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Header />
-      {loading ? <Loading /> : <></>}
+      <Header buttonState={buttonState} setButtonState={setButtonState} />
+      {loading ? <Loading /> :
+      <Posts 
+        buttonState={buttonState}
+        setButtonState={setButtonState}
+        ref={sliderRef}
+      />
+      }
       <Footer />
     </>
   );

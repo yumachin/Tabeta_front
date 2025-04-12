@@ -1,6 +1,7 @@
 import { Dispatch, RefObject, SetStateAction } from "react";
 import Slider from "react-slick";
 import FFAccounts from "./FFAccounts";
+import { SliderSettings } from "@/utils/slider/settings";
 
 type FFProps = {
   followers: FFRelation[] | null;
@@ -19,6 +20,7 @@ type FFRelation = {
 }
 
 export default function FF(props: FFProps) {
+  // const settings = SliderSettings(props.setButtonState);
   const settings = {
     dots: false,
     infinite: false,
@@ -32,7 +34,7 @@ export default function FF(props: FFProps) {
           props.setButtonState(1);
         }
       }
-    },
+    }
   };
 
   return (
