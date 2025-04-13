@@ -4,7 +4,7 @@ import { useRef, useState } from "react";
 import Header from "@/components/blocks/header/Header";
 import Loading from "@/components/loading/Loading";
 import Footer from "@/components/blocks/footer/Footer";
-import Posts from "@/components/posts/Posts";
+import PostsCarousel from "@/components/posts/PostsCarousel";
 import Slider from "react-slick";
 
 export default function DashboardPage() {
@@ -81,14 +81,21 @@ export default function DashboardPage() {
 
   return (
     <>
-      <Header buttonState={buttonState} setButtonState={setButtonState} />
-      {loading ? <Loading /> :
-      <Posts 
+      <Header
+        onNext={() => sliderRef.current?.slickNext()}
+        onPrev={() => sliderRef.current?.slickPrev()}
         buttonState={buttonState}
         setButtonState={setButtonState}
-        ref={sliderRef}
       />
-      }
+      {loading ? (
+        <Loading />
+      ) : (
+        <PostsCarousel
+          ref={sliderRef}
+          buttonState={buttonState}
+          setButtonState={setButtonState}
+        />
+      )}
       <Footer />
     </>
   );

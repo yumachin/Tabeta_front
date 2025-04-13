@@ -7,8 +7,7 @@ import Slider from "react-slick";
 import Header from "@/components/blocks/header/Header";
 import Footer from "@/components/blocks/footer/Footer";
 import Loading from "@/components/loading/Loading";
-import FF from "@/components/ff/FF";
-import { assets } from "@/assets/assets";
+import FFCarousel from "@/components/ff/FFCarousel";
 
 export default function FFPage() {
   const router = useRouter();
@@ -18,7 +17,6 @@ export default function FFPage() {
   const searchParams = useSearchParams();
   const id = searchParams.get("id");
   const name = searchParams.get("name");
-  const imageUrl = assets.defaultUserIcon.src;
 
   useEffect(() => {
     const fetchFFData = async () => {
@@ -45,94 +43,22 @@ export default function FFPage() {
     };
     fetchFFData();
   }, [router, id, name]);
-
-  const followers = [
-    {
-      id: 1,
-      profileImagePath: imageUrl,
-      userName: "きよや",
-      accountId: "@K1106",
-      description: null,
-    },
-    {
-      id: 2,
-      profileImagePath: imageUrl,
-      userName: "こーせい",
-      accountId: "@k8035004287922",
-      description: "大学3年生",
-    },
-    {
-      id: 3,
-      profileImagePath: imageUrl,
-      userName: "ゆうま",
-      accountId: "@Y5141",
-      description: "インターンで勉強した内容をアウトプットしていきたい！最近花粉症のせいで、目も鼻もかゆいです。薬とティッシュが欲しいです。",
-    },
-    {
-      id: 4,
-      profileImagePath: imageUrl,
-      userName: "けいた",
-      accountId: "@K418",
-      description: "最近は、よく遊びに行ってるよ。",
-    },
-    {
-      id: 5,
-      profileImagePath: imageUrl,
-      userName: "そうた",
-      accountId: "@S1010",
-      description: "彼女のことが大好きです。もう愛が止まりません。"
-    }
-  ];
-
-  // const followings = [
-  //   {
-  //     id: 1,
-  //     profileImagePath: imageUrl,
-  //     userName: "きよや",
-  //     accountId: "@K1106",
-  //     description: null
-  //   },
-  //   {
-  //     id: 2,
-  //     profileImagePath: imageUrl,
-  //     userName: "こーせい",
-  //     accountId: "@k8035004287922",
-  //     description: "大学3年生"
-  //   },
-  //   {
-  //     id: 5,
-  //     profileImagePath: imageUrl,
-  //     userName: "そうた",
-  //     accountId: "@S1010",
-  //     description: "彼女のことが大好きです。もう愛が止まりません。"
-  //   }
-  // ];
-
-  const followings: {
-    id: number;
-    profileImagePath: string;
-    userName: string;
-    accountId: string;
-    description: string | null;
-  }[] = [];
-
+  
   return (
     <>
       <Header
-        onNext={() => sliderRef.current?.slickNext()} 
-        onPrev={() => sliderRef.current?.slickPrev()} 
+        onNext={() => sliderRef.current?.slickNext()}
+        onPrev={() => sliderRef.current?.slickPrev()}
         buttonState={buttonState} 
         setButtonState={setButtonState}
       />
-        {loading ? <Loading /> : (
-          <FF
-            followers={followers}
-            followings={followings}
-            ref={sliderRef}
-            buttonState={buttonState}
-            setButtonState={setButtonState}
-          />
-        )}
+      {loading ? <Loading /> : (
+      <FFCarousel
+        ref={sliderRef}
+        buttonState={buttonState}
+        setButtonState={setButtonState}
+      />
+      )}
       <Footer />
     </>
   );

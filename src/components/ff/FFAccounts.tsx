@@ -3,6 +3,7 @@ import Link from "next/link";
 import EmptyFF from "../Empty/EmptyFF";
 
 type FFAccountsProps = {
+  type?: string;
   followers?: FFRelation[] | null;
   followings?: FFRelation[] | null;
 }
@@ -16,14 +17,10 @@ type FFRelation = {
 }
 
 export default function FFAccounts(props: FFAccountsProps) {
-  const list = props.followings || props.followers;
+  const list = props.type === "followers" ? props.followers : props.followings;
 
-  if (!props.followers || props.followers.length === 0) {
-    console.log("aaa")
-    return <EmptyFF flag="followers" />;
-  } else if (!props.followings || props.followings.length === 0) {
-    console.log("bbb")
-    return <EmptyFF />;
+  if (!list || list.length === 0) {
+    return <EmptyFF flag={props.type} />;
   }
 
   return (

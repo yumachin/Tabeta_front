@@ -14,23 +14,20 @@ export default function EmptyFF(props: EmptyFFProps) {
           <Users size={32} className="text-orange-500" />
         )}
       </div>
-      
       <h2 className="text-xl font-bold text-gray-800 mb-2">
         {props.flag === "followers" 
-          ? "まだ誰もフォローしていません"
-          : "まだフォロワーがいません"}
+          ? "まだフォロワーがいません" 
+          : "まだ誰もフォローしていません"}
       </h2>
-      
       <p className="text-gray-500 text-center mb-8">
         {props.flag === "followers"
-          ? "気になるユーザーをフォローして、最新の投稿をチェックしましょう！"
-          : "あなたのプロフィールをシェアして、友達にフォローしてもらいましょう！"}
+          ? "あなたのプロフィールをシェアして、友達にフォローしてもらいましょう！"
+          : "気になるユーザーをフォローして、最新の投稿をチェックしましょう！"}
       </p>
-      
       <button className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full shadow-sm">
         {props.flag === "followers"
-          ? "ユーザーを探す的なページに飛ばしたい"
-          : "プロフィールをシェア的な機能を実装したい（Xでアカウント情報をツイートするとか）"}
+          ? "プロフィールをシェア的な機能を実装したい（Xでアカウント情報をツイートするとか）"
+          : "ユーザーを探す的なページに飛ばしたい"}
       </button>
     </div>
   );
