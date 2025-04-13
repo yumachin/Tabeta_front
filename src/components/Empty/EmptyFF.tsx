@@ -17,20 +17,20 @@ export default function EmptyFF(props: EmptyFFProps) {
       
       <h2 className="text-xl font-bold text-gray-800 mb-2">
         {props.flag === "followers" 
-          ? "まだフォロワーがいません" 
-          : "まだ誰もフォローしていません"}
+          ? "まだ誰もフォローしていません"
+          : "まだフォロワーがいません"}
       </h2>
       
       <p className="text-gray-500 text-center mb-8">
         {props.flag === "followers"
-          ? "あなたのプロフィールをシェアして、友達にフォローしてもらいましょう！"
-          : "気になるユーザーをフォローして、最新の投稿をチェックしましょう！"}
+          ? "気になるユーザーをフォローして、最新の投稿をチェックしましょう！"
+          : "あなたのプロフィールをシェアして、友達にフォローしてもらいましょう！"}
       </p>
       
       <button className="px-6 py-3 bg-orange-500 hover:bg-orange-600 text-white font-medium rounded-full shadow-sm">
         {props.flag === "followers"
-          ? "プロフィールをシェア"
-          : "ユーザーを探す"}
+          ? "ユーザーを探す的なページに飛ばしたい"
+          : "プロフィールをシェア的な機能を実装したい（Xでアカウント情報をツイートするとか）"}
       </button>
     </div>
   );

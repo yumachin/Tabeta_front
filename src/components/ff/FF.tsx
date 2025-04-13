@@ -20,29 +20,12 @@ type FFRelation = {
 }
 
 export default function FF(props: FFProps) {
-  // const settings = SliderSettings(props.setButtonState);
-  const settings = {
-    dots: false,
-    infinite: false,
-    speed: 500,
-    arrows: false,
-    afterChange: (current: number) => {
-      if (props.setButtonState) {
-        if (current === 0) {
-          props.setButtonState(0);
-        } else {
-          props.setButtonState(1);
-        }
-      }
-    }
-  };
+  const settings = SliderSettings(props.setButtonState);
 
   return (
     <Slider {...settings} ref={props.ref}>
-      {props.buttonState === 0 ?
-        <FFAccounts followers={props.followers} /> : 
-        <FFAccounts followings={props.followings} />
-      }
+      <FFAccounts followers={props.followers} />
+      <FFAccounts followings={props.followings} />
     </Slider>
   );
 }

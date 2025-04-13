@@ -84,29 +84,37 @@ export default function FFPage() {
     }
   ];
 
-  const followings = [
-    {
-      id: 1,
-      profileImagePath: imageUrl,
-      userName: "きよや",
-      accountId: "@K1106",
-      description: null
-    },
-    {
-      id: 2,
-      profileImagePath: imageUrl,
-      userName: "こーせい",
-      accountId: "@k8035004287922",
-      description: "大学3年生"
-    },
-    {
-      id: 5,
-      profileImagePath: imageUrl,
-      userName: "そうた",
-      accountId: "@S1010",
-      description: "彼女のことが大好きです。もう愛が止まりません。"
-    }
-  ];
+  // const followings = [
+  //   {
+  //     id: 1,
+  //     profileImagePath: imageUrl,
+  //     userName: "きよや",
+  //     accountId: "@K1106",
+  //     description: null
+  //   },
+  //   {
+  //     id: 2,
+  //     profileImagePath: imageUrl,
+  //     userName: "こーせい",
+  //     accountId: "@k8035004287922",
+  //     description: "大学3年生"
+  //   },
+  //   {
+  //     id: 5,
+  //     profileImagePath: imageUrl,
+  //     userName: "そうた",
+  //     accountId: "@S1010",
+  //     description: "彼女のことが大好きです。もう愛が止まりません。"
+  //   }
+  // ];
+
+  const followings: {
+    id: number;
+    profileImagePath: string;
+    userName: string;
+    accountId: string;
+    description: string | null;
+  }[] = [];
 
   return (
     <>
