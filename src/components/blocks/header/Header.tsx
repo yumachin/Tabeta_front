@@ -7,8 +7,8 @@ import { usePathname, useRouter } from "next/navigation";
 import HeaderToggle from "./HeaderToggle";
 
 type HeaderProps = {
-  onNext: () => void;
-  onPrev: () => void;
+  onNext?: () => void;
+  onPrev?: () => void;
   buttonState?: number;
   setButtonState?: (state: number) => void;
 };

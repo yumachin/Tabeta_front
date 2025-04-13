@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Header from "@/components/blocks/header/Header";
 import Loading from "@/components/loading/Loading";
-import Posts from "@/components/posts/Posts";
+import Posts from "@/components/posts/PostsCarousel";
 
 export default function LandingPage() {
   const [loading] = useState<boolean>(false);
