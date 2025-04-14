@@ -5,12 +5,15 @@ import { assets } from "@/assets/assets";
 import AuthButtons from "./AuthButtons";
 import { usePathname, useRouter } from "next/navigation";
 import HeaderToggle from "./HeaderToggle";
+import SettingButton from "./SettingsButton";
+import { Button } from "@/components/ui/button";
 
 type HeaderProps = {
   onNext?: () => void;
   onPrev?: () => void;
   buttonState?: number;
   setButtonState?: (state: number) => void;
+  onSubmit?: () => void; // postする関数を受け取る
 };
 
 export default function Header(props: HeaderProps) {
@@ -18,7 +21,6 @@ export default function Header(props: HeaderProps) {
   const router = useRouter();
 
   const handleRoute = () => {
-    console.log("pathnameは", pathname);
     if (pathname !== "/auth/signUp" && pathname !== "/auth/signIn") {
       router.push("/dashboard");
     } else {
@@ -37,18 +39,22 @@ export default function Header(props: HeaderProps) {
           onClick={handleRoute}
         />
         {pathname === "/landing" && <AuthButtons />}
-      </div>
-      {(pathname === "/dashboard" || pathname === "/ff") &&
-        (props.buttonState === 0 || props.buttonState === 1) &&
-        props.setButtonState && (
-          <HeaderToggle
-            onNext={props.onNext}
-            onPrev={props.onPrev}
-            pathname={pathname}
-            buttonState={props.buttonState}
-            setButtonState={props.setButtonState}
-          />
+        {pathname === "/profile" && <SettingButton />}
+        {pathname === "/post" && (
+          <Button onClick={props.onSubmit} className="text-xs bg-orange-500">
+            シェア
+          </Button>
         )}
+      </div>
+      {(pathname === "/dashboard" || pathname === "/ff") && (
+        <HeaderToggle
+          onNext={props.onNext}
+          onPrev={props.onPrev}
+          pathname={pathname}
+          buttonState={props.buttonState}
+          setButtonState={props.setButtonState}
+        />
+      )}
     </header>
   );
 }
