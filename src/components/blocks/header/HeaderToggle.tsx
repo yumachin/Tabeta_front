@@ -2,8 +2,8 @@ type HeaderToggleProps = {
   onNext?: () => void;
   onPrev?: () => void;
   pathname: string;
-  buttonState: number;
-  setButtonState: (state: number) => void;
+  buttonState?: number;
+  setButtonState?: (state: number) => void;
 };
 
 export default function HeaderToggle(props: HeaderToggleProps) {
