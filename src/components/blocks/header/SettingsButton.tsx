@@ -27,7 +27,7 @@ export default function SettingsButton() {
   const handleLogout = () => {
     localStorage.removeItem("user_id");
     localStorage.removeItem("session_id");
-    router.push("/LP");
+    router.push("/landing");
   };
 
   const handleTwoAuth = () => {

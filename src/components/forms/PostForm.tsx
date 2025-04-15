@@ -29,7 +29,10 @@ type PostFormType = {
 
 export default function PostForm(props: PostFormProps) {
   return (
-    <div className="container px-4 py-6 mx-auto max-w-2xl">
+    <form 
+      className="container px-4 py-6 mx-auto max-w-2xl"
+      onSubmit={props.onSubmit}
+    >
       <Label htmlFor="ImagePath" className="mb-3">
         写真
       </Label>
@@ -123,6 +126,9 @@ export default function PostForm(props: PostFormProps) {
           />
         )}
       />
-    </div>
+      <p className="min-h-[1rem] text-red-400 text-xs my-1 ml-2">
+        {props.errors.description?.message}
+      </p>
+    </form>
   );
 }

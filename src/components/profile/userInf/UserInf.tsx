@@ -1,4 +1,4 @@
-import { EditProfile } from "@/components/modals/profile/EditProfile";
+import EditProfile from "@/components/modals/form/EditProfile";
 import FFButton from "./buttons/FFButton";
 import UserDetails from "./user/UserDetails";
 import UserIcon from "./user/UserIcon";
