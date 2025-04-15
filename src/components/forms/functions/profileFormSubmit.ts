@@ -1,12 +1,13 @@
 import { SubmitHandler } from "react-hook-form";
 
-type PostFormType = {
-  imagePath?: string;
-  timeSection: string;
+type UpdateProfileType = {
+  profileImagePath?: string | null;
+  userName: string,
+  accountId: string;
+  email: string;
   isPublic: string;
-  title: string;
   description?: string;
-};
+}
 
 const base64ToFile = (base64: string, fileName: string): File => {
   const arr = base64.split(",");
@@ -20,27 +21,27 @@ const base64ToFile = (base64: string, fileName: string): File => {
   return new File([u8arr], fileName, { type: mime });
 };
 
-export const formSubmit: SubmitHandler<PostFormType> = async (formData) => {
+export const profileFormSubmit: SubmitHandler<UpdateProfileType> = async (formData) => {
   const userId = "userId";
   const addedFormData = { ...formData, userId };
-  const imagePath = addedFormData.imagePath;
-  delete addedFormData.imagePath;
+  const profileImagePath = addedFormData.profileImagePath;
+  delete addedFormData.profileImagePath;
 
-  const decodedFile = imagePath ? base64ToFile(imagePath, "decoded-image.png") : undefined;
+  const decodedFile = profileImagePath ? base64ToFile(profileImagePath, "decoded-image.png") : undefined;
 
-  const postData = new FormData();
-  postData.append("json_data", JSON.stringify(addedFormData));
+  const updateData = new FormData();
+  updateData.append("json_data", JSON.stringify(addedFormData));
 
   if (decodedFile) {
-    postData.append("photo", decodedFile);
+    updateData.append("photo", decodedFile);
   } else {
     console.log("photoがありません。");
-    postData.append("photo", "");
+    updateData.append("photo", "");
   }
 
   // 必要に応じて fetch 処理などをここに書く
   // await fetch('/api/posts', {
   //   method: 'POST',
-  //   body: postData,
+  //   body: updateData,
   // });
 };

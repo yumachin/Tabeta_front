@@ -2,27 +2,57 @@
 
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil } from "lucide-react";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { SubmitHandler, useForm } from "react-hook-form";
-import toast from "react-hot-toast";
 
-import Field2 from "@/components/post/_molecules/Body/Field2";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { UpdateProfileType } from "@/types/types";
 import { EditProfileValidation } from "@/utils/validations/ProfileValidation";
+import ProfileForm from "@/components/forms/ProfileForm";
+import { profileFormSubmit } from "@/components/forms/functions/profileFormSubmit";
 
-export function EditProfile(props: ProfileEditProps) {
+type ProfileEditProps = {
+  user: TmpUser;
+}
+
+export type TmpUser = {
+  id: number;
+  profileImagePath: string;
+  userName: string;
+  accountId: string;
+  description: string;
+  email: string;
+  isPublic: string;
+  follower: number;
+  follow: number;
+}
+
+type UpdateProfileType = {
+  profileImagePath?: string | null;
+  userName: string,
+  accountId: string;
+  email: string;
+  isPublic: string;
+  description?: string;
+}
+
+export default function EditProfile(props: ProfileEditProps) {
   const [open, setOpen] = useState(false);
   // const [user_id, setUser_id] = useState<number | null>(null);
   // const [session_id, setSession_id] = useState<string | null>(null);
   // const [selectedImage, setSelectedImage] = useState<string | null>(props.user.profileImagePath);
   // const router = useRouter();
-  // const { control, handleSubmit, formState: { errors } } = useForm<UpdateProfileType>({
-  //   mode: "onChange",
-  //   resolver: zodResolver(EditProfileValidation)
-  // });
+  const method = useForm<UpdateProfileType>({
+    mode: "onChange",
+    defaultValues: {
+      userName: props.user.userName,
+      accountId: props.user.accountId,
+      email: props.user.email,
+      isPublic: props.user.isPublic,
+      description: props.user.description
+    },
+    resolver: zodResolver(EditProfileValidation)
+  });
 
   // useEffect(() => {
   //   const userId = Number(localStorage.getItem("user_id"));
@@ -73,35 +103,21 @@ export function EditProfile(props: ProfileEditProps) {
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white gap-4 py-5">
+        <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white gap-4">
           <p className="text-base">編集</p>
           <Pencil />
         </Button>
       </DialogTrigger>
-      <DialogContent className="sm:max-w-[425px] bg-white border-zinc-800">
-        {/* <DialogHeader>
-          <DialogTitle className="text-lg">プロフィールを編集</DialogTitle>
+      <DialogContent className="sm:max-w-[425px] bg-white">
+        <DialogHeader>
+          <DialogTitle className="text-orange-500 text-lg">プロフィールを編集</DialogTitle>
         </DialogHeader>
-        <form onSubmit={handleSubmit(formSubmit)}>
-          <Field2 control={control} errors={errors} user={props.user} selectedImage={selectedImage} setSelectedImage={setSelectedImage} setOpen={setOpen}  /> 
-        </form> */}
+        <ProfileForm
+          onSubmit={method.handleSubmit(profileFormSubmit)}
+          control={method.control}
+          errors={method.formState.errors}
+        />
       </DialogContent>
     </Dialog>
   );
-};
-
-type ProfileEditProps = {
-  user: TmpUser
-}
-
-export type TmpUser = {
-  id: number;
-  profileImagePath: string;
-  userName: string;
-  accountId: string;
-  description: string;
-  email: string;
-  isPublic: string;
-  follower: number;
-  follow: number;
 }

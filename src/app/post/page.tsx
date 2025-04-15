@@ -2,7 +2,7 @@
 
 import Footer from "@/components/blocks/footer/Footer";
 import Header from "@/components/blocks/header/Header";
-import { formSubmit } from "@/components/forms/functions/formSubmit";
+import { postFormSubmit } from "@/components/forms/functions/postFormSubmit";
 import PostForm from "@/components/forms/PostForm";
 import { PostFormValidation } from "@/utils/validations/PostFormValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -30,9 +30,9 @@ export default function PostPage() {
 
   return (
     <div>
-      <Header onSubmit={method.handleSubmit(formSubmit)} />
+      <Header onSubmit={method.handleSubmit(postFormSubmit)} />
       <PostForm
-        onSubmit={method.handleSubmit(formSubmit)}
+        onSubmit={method.handleSubmit(postFormSubmit)}
         control={method.control}
         errors={method.formState.errors}
       />
