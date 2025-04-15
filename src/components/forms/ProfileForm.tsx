@@ -113,7 +113,7 @@ export default function ProfileForm(props: ProfileFormProps) {
           <Textarea 
             id="description"
             placeholder="プロフィールに自己紹介を追加する"
-            className="w-full min-h-[100px]" 
+            className="w-full h-[140px] resize-none" 
             {...field} 
           />
         )}

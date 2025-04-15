@@ -4,7 +4,7 @@ import UserDetails from "./user/UserDetails";
 import UserIcon from "./user/UserIcon";
 
 export default function UserInf(props: UserInfProps) {
-  const me = false;
+  const me = true;
 
   return (
     <section className="container px-4 py-6 mx-auto">

@@ -4,7 +4,7 @@ import UserInf from "@/components/profile/userInf/UserInf";
 import UserPosts from "@/components/profile/userPost/UserPosts";
 import { assets } from "@/assets/assets";
 
-type UserType = {
+type OtherUserType = {
   id: number;
   profileImagePath: string;
   userName: string;
@@ -16,21 +16,21 @@ type UserType = {
   follow: number;
 }
 
-export default function ProfilePage() {
+export default function OtherProfilePage() {
   const imageUrl = assets.defaultUserIcon.src;
 
-  const user: UserType =
+  const otherUser: OtherUserType =
     {
-      id: 6,
+      id: 8,
       // デフォルトの写真がこれ
       profileImagePath: imageUrl,
-      userName: "Mike",
-      accountId: "Mike123",
+      userName: "Bob",
+      accountId: "Bob123",
       description: "",
-      email: "kiyoya@gmail.com",
+      email: "kousei@gmail.com",
       isPublic: "1",
-      follower: 98,
-      follow: 142
+      follower: 89,
+      follow: 241
     };
 
   const posts = [
@@ -64,8 +64,8 @@ export default function ProfilePage() {
     <>
       <div className="flex flex-col min-h-screen bg-white">
         <Header />
-        <UserInf user={user} />
-        <UserPosts userName={user.userName} posts={posts} />
+        <UserInf user={otherUser} />
+        <UserPosts userName={otherUser.userName} posts={posts} />
         <Footer />
       </div>
     </>

@@ -121,7 +121,7 @@ export default function PostForm(props: PostFormProps) {
           <Textarea
             id="description"
             placeholder="説明を入力"
-            className="w-full min-h-[100px]"
+            className="w-full h-[200px] resize-none"
             {...field}
           />
         )}

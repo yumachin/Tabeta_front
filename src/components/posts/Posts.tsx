@@ -44,7 +44,7 @@ export default function Posts(props: PostsProps) {
                 src={post.imagePath}
                 width={600}
                 height={600}
-                alt=""
+                alt="Post Image"
                 className="object-cover w-full h-full"
               />
             </div>
