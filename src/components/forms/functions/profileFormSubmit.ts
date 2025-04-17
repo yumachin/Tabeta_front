@@ -21,7 +21,7 @@ const base64ToFile = (base64: string, fileName: string): File => {
   return new File([u8arr], fileName, { type: mime });
 };
 
-export const profileFormSubmit: SubmitHandler<UpdateProfileType> = async (formData) => {
+export const ProfileFormSubmit: SubmitHandler<UpdateProfileType> = async (formData) => {
   const userId = "userId";
   const addedFormData = { ...formData, userId };
   const profileImagePath = addedFormData.profileImagePath;

@@ -1,3 +1,5 @@
+"use client";
+
 import { SliderSettings } from "@/utils/slider/settings";
 import { usePathname } from "next/navigation";
 import { RefObject } from "react";
@@ -13,12 +15,14 @@ type Post = {
     profileImagePath: string;
   };
   imagePath: string;
+  timeSection?: string;
   createdAt: string;
   likes: number;
   description: string | null;
 }
 
 type PostsProps = {
+  posts: Post[];
   ref?: RefObject<Slider | null>;
   buttonState?: number;
   setButtonState?: (index: number) => void;
@@ -94,18 +98,18 @@ export default function PostsCarousel(props: PostsProps) {
   //   }
   // ];
 
-  const globalPosts: {
-    id: number,
-    postUserInf: {
-      id: number,
-      userName: string,
-      profileImagePath: string
-    },
-    imagePath: string,
-    createdAt: string,
-    likes: number,
-    description: null
-  } [] = [];
+  // const globalPosts: {
+  //   id: number,
+  //   postUserInf: {
+  //     id: number,
+  //     userName: string,
+  //     profileImagePath: string
+  //   },
+  //   imagePath: string,
+  //   createdAt: string,
+  //   likes: number,
+  //   description: null
+  // } [] = [];
 
   const followingPosts: {
     id: number,
@@ -122,7 +126,7 @@ export default function PostsCarousel(props: PostsProps) {
   
   return (
     <Slider {...settings} ref={props.ref} >
-      <Posts type="globalPosts" globalPosts={globalPosts} />
+      <Posts type="globalPosts" globalPosts={props.posts} />
       {pathname == "/dashboard" && <Posts followingPosts={followingPosts} />}
     </Slider>
   );

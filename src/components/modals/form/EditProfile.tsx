@@ -3,13 +3,13 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { Pencil } from "lucide-react";
 import { useState } from "react";
-import { SubmitHandler, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
 import { EditProfileValidation } from "@/utils/validations/ProfileValidation";
 import ProfileForm from "@/components/forms/ProfileForm";
-import { profileFormSubmit } from "@/components/forms/functions/profileFormSubmit";
+import { ProfileFormSubmit } from "@/components/forms/functions/profileFormSubmit";
 
 type ProfileEditProps = {
   user: TmpUser;
@@ -113,7 +113,7 @@ export default function EditProfile(props: ProfileEditProps) {
           <DialogTitle className="text-orange-500 text-lg">プロフィールを編集</DialogTitle>
         </DialogHeader>
         <ProfileForm
-          onSubmit={method.handleSubmit(profileFormSubmit)}
+          onSubmit={method.handleSubmit(ProfileFormSubmit)}
           control={method.control}
           errors={method.formState.errors}
         />

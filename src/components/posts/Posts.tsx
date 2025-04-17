@@ -5,6 +5,8 @@ import EmptyPost from "../Empty/EmptyPost";
 import PostHeader from "./postInf/PostHeader";
 import PostFooter from "./postInf/PostFooter";
 import { usePathname } from "next/navigation";
+import { assets } from "@/assets/assets";
+import { useState } from "react";
 
 type PostsProps = {
   type?: string;
@@ -26,6 +28,7 @@ type PostsType = {
 }
 
 export default function Posts(props: PostsProps) {
+  const defaultPostImage = assets.defaultPostImage.src;
   const list = props.type === "globalPosts" ? props.globalPosts : props.followingPosts;
   const pathname =usePathname();
 
@@ -36,21 +39,28 @@ export default function Posts(props: PostsProps) {
   return (
     <div className={`flex flex-col px-2 ${pathname === "/dashboard" && "mb-16"}`}>
       {
-        list.map((post: PostsType) => (
-          <div key={post.id} className="py-4 border-b border-gray-200">
-            <PostHeader postUserInf={post.postUserInf} createdAt={post.createdAt} pathname={pathname} />
-            <div className="overflow-hidden bg-gray-100 rounded-lg aspect-square">
-              <Image
-                src={post.imagePath}
-                width={600}
-                height={600}
-                alt="Post Image"
-                className="object-cover w-full h-full"
-              />
+        list.map((post: PostsType) =>  {
+          const [imgSrc, setImgSrc] = useState(
+            `${process.env.NEXT_PUBLIC_API_URL}/storage/${post.imagePath}`
+          );
+
+          return (
+            <div key={post.id} className="py-4 border-b border-gray-200">
+              <PostHeader postUserInf={post.postUserInf} createdAt={post.createdAt} pathname={pathname} />
+              <div className="overflow-hidden bg-gray-100 rounded-lg aspect-square">
+                <Image
+                  src={imgSrc}
+                  width={600}
+                  height={600}
+                  alt="Post Image"
+                  className="object-cover w-full h-full"
+                  onError={() => setImgSrc(defaultPostImage)}
+                />
+              </div>
+              <PostFooter post={post} userName={post.postUserInf.userName} />
             </div>
-            <PostFooter post={post} userName={post.postUserInf.userName} />
-          </div>
-        ))
+          )
+        })
       }
     </div>
   );

@@ -20,7 +20,7 @@ const base64ToFile = (base64: string, fileName: string): File => {
   return new File([u8arr], fileName, { type: mime });
 };
 
-export const postFormSubmit: SubmitHandler<PostFormType> = async (formData) => {
+export const PostFormSubmit: SubmitHandler<PostFormType> = async (formData) => {
   const userId = "userId";
   const addedFormData = { ...formData, userId };
   const imagePath = addedFormData.imagePath;
