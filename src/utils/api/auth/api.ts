@@ -1,20 +1,40 @@
-import axios from 'axios';
+import camelcaseKeys from "camelcase-keys";
 
-import { SignInType, SignUpType } from '@/types/types';
+type SignUpType = {
+  userName: string;
+  accountId: string;
+  email: string;
+  password: string;
+}
 
-// const LOCAL_API_URL = 'http://localhost:8000';
-const LOCAL_API_URL = 'http://160.251.136.146';
+type SignInType = {
+  email: string;
+  password: string;
+}
 
 // ➀ サインアップ
-export const signUp = async (formData: SignUpType) => {
+export const SignUp = async (formData: SignUpType) => {
   try {
-    const res = await axios.post(`${LOCAL_API_URL}/api/sign-up`, {
-      account_id: formData.account_id,
-      user_name: formData.user_name,
-      email: formData.email, 
-      password: formData.password
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/sign-up`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        account_id: formData.accountId,
+        user_name: formData.userName,
+        email: formData.email, 
+        password: formData.password
+      }),
     });
-    return res.data;
+
+    if (!res.ok) {
+      throw new Error("サインアップに失敗しました");
+    }
+
+    const data = await res.json();
+    const camelDetails = camelcaseKeys(data.details, { deep: true });
+    return camelDetails;
   } catch (error) {
     console.error("サインアップAPIのエラー", error);
     throw new Error("サインアップ失敗");
@@ -22,13 +42,25 @@ export const signUp = async (formData: SignUpType) => {
 };
 
 // ➁ サインイン
-export const signIn = async (formData: SignInType) => {
+export const SignIn = async (formData: SignInType) => {
   try {
-    const res = await axios.post(`${LOCAL_API_URL}/api/sign-in`, {
-      email: formData.email, 
-      password: formData.password
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/sign-in`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        email: formData.email,
+        password: formData.password
+      }),
     });
-    return res.data;
+  
+    if (!res.ok) {
+      throw new Error("サインインに失敗しました");
+    }
+  
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.error("サインインAPIのエラー", error);
     throw new Error("サインイン失敗");
@@ -36,10 +68,21 @@ export const signIn = async (formData: SignInType) => {
 };
 
 // ➂ サインアウト
-export const signOut = async () => {
+export const SignOut = async () => {
   try {
-    const res = await axios.post(`${LOCAL_API_URL}/api/sign-out`);
-    return res.data;
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/sign-out`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+    });
+
+    if (!res.ok) {
+      throw new Error("サインアウトに失敗しました");
+    }
+
+    const data = await res.json();
+    return data;
   } catch (error) {
     console.error("サインアウトAPIのエラー", error);
     throw new Error("サインアウト失敗");

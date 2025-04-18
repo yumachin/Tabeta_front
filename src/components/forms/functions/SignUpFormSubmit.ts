@@ -1,4 +1,7 @@
+import { SignUp } from "@/utils/api/auth/api";
+import { useRouter } from "next/navigation";
 import { SubmitHandler } from "react-hook-form";
+import toast from "react-hot-toast";
 
 type SignUpFormType = {
   userName: string;
@@ -7,22 +10,16 @@ type SignUpFormType = {
   password: string;
 };
 
-export const SignUpFormSubmit: SubmitHandler<SignUpFormType> = async (formData) => {
-  // const loadingToast = toast.loading("アカウント作成中...");
-  // try {
-  //   // const res = await signUp(formData);
-  //   // const ID = res.details[0].id;
-  //   // const session_id = res.details[0].session_id;
-  //   // localStorage.setItem("user_id", ID);
-  //   // localStorage.setItem("session_id", session_id);
+export const SignUpFormSubmit: SubmitHandler<SignUpFormType> = async (formData: SignUpFormType) => {
+  const loadingToast = toast.loading("アカウント作成中...");
 
-  //   toast.success("アカウントを作成しました！", { id: loadingToast });
-  //   setTimeout(() => {
-  //     toast.remove();
-  //     router.push("/dashboard");
-  //   }, 1000);
-  // } catch (error) {
-  //   toast.error("アカウントの作成に失敗しました。", { id: loadingToast });
-  //   console.error(error);
-  // }
+  try {
+    await SignUp(formData);
+    toast.success("アカウントを作成しました！", { id: loadingToast });
+    return true;
+  } catch (error) {
+    toast.error("アカウントの作成に失敗しました。", { id: loadingToast });
+    console.error(error);
+    return false;
+  }
 };
