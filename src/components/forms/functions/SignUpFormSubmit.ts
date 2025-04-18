@@ -1,6 +1,5 @@
+import { ToastStyle } from "@/styles/ToastStyle";
 import { SignUp } from "@/utils/api/auth/api";
-import { useRouter } from "next/navigation";
-import { SubmitHandler } from "react-hook-form";
 import toast from "react-hot-toast";
 
 type SignUpFormType = {
@@ -10,15 +9,29 @@ type SignUpFormType = {
   password: string;
 };
 
-export const SignUpFormSubmit: SubmitHandler<SignUpFormType> = async (formData: SignUpFormType) => {
+export const SignUpFormSubmit = async (formData: SignUpFormType) => {
   const loadingToast = toast.loading("アカウント作成中...");
 
   try {
     await SignUp(formData);
-    toast.success("アカウントを作成しました！", { id: loadingToast });
+    toast.success(
+      "アカウントを作成しました！",
+      {
+        style: ToastStyle,
+        duration: 1200,
+        id: loadingToast,
+      }
+    );
     return true;
   } catch (error) {
-    toast.error("アカウントの作成に失敗しました。", { id: loadingToast });
+    toast.error(
+      "アカウントの作成に失敗しました。",
+      {
+        style: ToastStyle,
+        duration: 1200,
+        id: loadingToast,
+      }
+    );
     console.error(error);
     return false;
   }

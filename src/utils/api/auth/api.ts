@@ -60,7 +60,8 @@ export const SignIn = async (formData: SignInType) => {
     }
   
     const data = await res.json();
-    return data;
+    const camelDetails = camelcaseKeys(data.details, { deep: true });
+    return camelDetails;
   } catch (error) {
     console.error("サインインAPIのエラー", error);
     throw new Error("サインイン失敗");
