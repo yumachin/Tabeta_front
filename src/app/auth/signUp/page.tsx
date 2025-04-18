@@ -20,7 +20,7 @@ type SignUpFormType = {
 export default function SignUpPage() {
   const router = useRouter();
   const method = useForm<SignUpFormType>({
-    mode: "onChange",
+    mode: "onSubmit",
     defaultValues: {
       userName: "",
       accountId: "",
@@ -37,7 +37,7 @@ export default function SignUpPage() {
       if (success) {
         router.push("/dashboard");
       }
-    }, 1000);
+    }, 1200);
   };
 
   return (
