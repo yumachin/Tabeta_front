@@ -24,7 +24,7 @@ export default function NotFoundPage() {
         </p>
         <div className="flex flex-col sm:flex-row justify-center">
           <Button asChild className="bg-orange-500 hover:bg-orange-600">
-            <Link href="/auth/sign-in" className="flex items-center gap-2">
+            <Link href="/auth/signIn" className="flex items-center gap-2">
               <LogIn className="h-4 w-4" />
               ログインする
             </Link>
