@@ -17,6 +17,7 @@ export type TmpUser = {
 }
 
 export default function UserDetails(props: UserDetailsProps) {
+  console.log("UserDetails", props.user);
   return (
     <div className="flex-1">
       <div className="flex items-end space-x-2">

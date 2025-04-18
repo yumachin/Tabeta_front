@@ -11,7 +11,11 @@ export const SignInFormSubmit = async (formData: SignInFormType) => {
   const loadingToast = toast.loading("ログイン中...");
 
   try {
-    await SignIn(formData);
+    const res = await SignIn(formData);
+    const userId = res[0].id;
+    const sessionId = res[0].sessionId
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("sessionId", sessionId);
     toast.success(
       "ログイン処理に成功しました！",
       {

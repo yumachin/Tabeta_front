@@ -64,7 +64,7 @@ export default function ProfilePage() {
     <>
       <div className="flex flex-col min-h-screen bg-white">
         <Header />
-        <UserInf user={user} />
+        <UserInf />
         <UserPosts userName={user.userName} posts={posts} />
         <Footer />
       </div>

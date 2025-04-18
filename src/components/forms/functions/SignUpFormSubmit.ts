@@ -13,7 +13,11 @@ export const SignUpFormSubmit = async (formData: SignUpFormType) => {
   const loadingToast = toast.loading("アカウント作成中...");
 
   try {
-    await SignUp(formData);
+    const res = await SignUp(formData);
+    const userId = res.details[0].id;
+    const sessionId = res.details[0].sessionId
+    localStorage.setItem("userId", userId);
+    localStorage.setItem("sessionId", sessionId);
     toast.success(
       "アカウントを作成しました！",
       {
