@@ -4,34 +4,23 @@ import { Dialog, DialogClose, DialogContent, DialogTitle, DialogTrigger } from "
 import { assets } from "@/assets/assets";
 
 type UserIconProps = {
-  profileImagePath: string;
+  profileImagePath?: string;
 }
 
 export default function UserIcon(props: UserIconProps) {
-  // const imageUrl = props.profileImagePath;
-  const imageUrl = assets.defaultUserIcon.src;
+  const imageUrl = props.profileImagePath || assets.defaultUserIcon.src;
 
   return (
     <div className="flex-shrink-0 mr-6">
       <Dialog>
         <DialogTrigger>
-          {imageUrl ? (
-            <Image 
-              src={imageUrl}
-              width={70}
-              height={70}
-              alt="UserIcon" 
-              className="object-cover rounded-full aspect-square"
-            />
-          ) : (
-            <Image 
-              src="placeholder.svg"
-              width={70}
-              height={70}
-              alt="UserIcon" 
-              className="rounded-full border-1"
-            />
-          )}
+          <Image 
+            src={imageUrl}
+            width={70}
+            height={70}
+            alt="UserIcon" 
+            className="object-cover rounded-full aspect-square"
+          />
         </DialogTrigger>
         <DialogContent className="rounded-full">
           {/* sr-only: 視覚的に消す */}

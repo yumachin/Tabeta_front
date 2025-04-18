@@ -3,7 +3,7 @@ import { Settings } from "react-slick";
 export const SliderSettings = (setButtonState: (index: number) => void): Settings => ({
   dots: false,
   infinite: false,
-  speed: 500,
+  speed: 600,
   arrows: false,
   afterChange: (current: number) => {
     if (setButtonState) {

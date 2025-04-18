@@ -4,7 +4,6 @@ import { SliderSettings } from "@/utils/slider/settings";
 import { usePathname } from "next/navigation";
 import { RefObject } from "react";
 import Slider from "react-slick";
-import { assets } from "@/assets/assets";
 import Posts from "./Posts";
 
 type Post = {

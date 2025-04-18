@@ -1,23 +1,23 @@
-// const LOCAL_API_URL = 'http://localhost:8000';
-const LOCAL_API_URL = 'http://160.251.136.146';
+import camelcaseKeys from "camelcase-keys";
 
 // ➀ プロフィールを取得
-export const getUserProfile = async (target_user_id: number, user_id: number | null, session_id: string | null) => {
+export const GetUserProfile = async (targetUserId: number, userId: number | null, sessionId: string | null) => {
   try {
-    if (!user_id || !session_id) {
+    if (!userId || !sessionId) {
       throw new Error("セッションID, 又はユーザーIDが無効");
     }
-    const res = await fetch(`${LOCAL_API_URL}/api/profile`, {
+
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/profile`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": session_id
+        "Authorization": sessionId
       },
-      body: JSON.stringify({viewer_id: user_id, poster_id: target_user_id}),
-      cache: "no-store"
+      body: JSON.stringify({viewer_id: userId, poster_id: targetUserId}),
     });
     const data = await res.json();
-    return data.details;
+    const camelDetails = camelcaseKeys(data.details, { deep: true });
+    return camelDetails;
   } catch(error) {
     console.error("ユーザープロフィール取得APIのエラー", error);
     throw new Error("ユーザープロフィール取得失敗");
@@ -30,7 +30,7 @@ export const getFollowers = async (user_id: number | null, session_id: string | 
     if (!user_id || !session_id) {
       throw new Error("セッションID, 又はユーザーIDが無効");
     }
-    const res = await fetch(`${LOCAL_API_URL}/api/followed-user`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/followed-user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -53,7 +53,7 @@ export const getFollowings = async (user_id: number | null, session_id: string |
     if (!user_id || !session_id) {
       throw new Error("セッションID, 又はユーザーIDが無効");
     }
-    const res = await fetch(`${LOCAL_API_URL}/api/following-user`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/following-user`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
