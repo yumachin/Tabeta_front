@@ -45,7 +45,7 @@ export default function Posts(props: PostsProps) {
           );
 
           return (
-            <div key={post.id} className="py-4 border-b border-gray-200">
+            <div key={post.id} className="py-3 border-b border-gray-200">
               <PostHeader postUserInf={post.postUserInf} createdAt={post.createdAt} pathname={pathname} />
               <div className="overflow-hidden bg-gray-100 rounded-lg aspect-square">
                 <Image

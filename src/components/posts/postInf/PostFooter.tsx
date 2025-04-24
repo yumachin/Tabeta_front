@@ -19,6 +19,7 @@ type Post = {
 }
 
 export default function PostFooter(props: PostFooterProps) {
+  console.log(props.post.likes)
   return (
     <div className="mx-2">
       <div className="flex items-center justify-between mt-3">
@@ -61,12 +62,9 @@ export default function PostFooter(props: PostFooterProps) {
           </svg>
         </button>
       </div>
-      <p className="mt-1 text-sm">
-        <span className="font-medium">いいね {props.post.likes}件</span>
-      </p>
-      <div className="flex mt-2 text-sm flex-wrap items-center gap-x-3 max-h-[4.5rem] overflow-y-auto">
-        {!(props.post.description === null) && <p className="font-medium">{props.userName}</p>}
-        {props.post.description !== "" && <span className="break-words">{props.post.description}</span>}
+      <span className="mt-1 text-sm">いいね　{props.post.likes ? props.post.likes : 0}件</span>
+      <div>
+        {props.post.description !== "" && <span className="ml-2 text-xs max-h-[4.5rem] break-words">{props.post.description}</span>}
       </div>
     </div>
   );

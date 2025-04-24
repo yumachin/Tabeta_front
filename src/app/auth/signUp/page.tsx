@@ -8,14 +8,9 @@ import { SignUpValidation } from "@/utils/validations/AuthValidations";
 import SignUpForm from "@/components/forms/SignUpForm";
 import { SignUpFormSubmit } from "@/components/forms/functions/SignUpFormSubmit";
 import { useRouter } from "next/navigation";
-import toast from "react-hot-toast";
 
-type SignUpFormType = {
-  userName: string;
-  accountId: string;
-  email: string;
-  password: string;
-};
+import toast from "react-hot-toast";
+import { SignUpFormType } from "@/types/auth";
 
 export default function SignUpPage() {
   const router = useRouter();

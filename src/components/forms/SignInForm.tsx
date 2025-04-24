@@ -92,7 +92,7 @@ export default function SignInForm(props: SignInFormProps) {
                 </p>
               </div>
             </div>
-            <Button type="submit" className="w-full bg-orange-500 mt-4">
+            <Button type="submit" className="w-full bg-orange-500 mt-4 font-bold">
               ログイン
             </Button>
           </form>
@@ -114,7 +114,7 @@ export default function SignInForm(props: SignInFormProps) {
 
           <p className="mt-6 text-sm text-center text-gray-500">
             アカウントをお持ちでない方は{" "}
-            <Link href="/auth/signUp" className="text-orange-500">
+            <Link href="/auth/signUp" className="text-orange-500 font-bold">
               新規登録
             </Link>
           </p>

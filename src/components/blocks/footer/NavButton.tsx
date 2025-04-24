@@ -25,7 +25,7 @@ export default function NavButton(props: NavButtonProps) {
   };
 
   const IconName = (props: IconNameProps) => {
-    return <span className="mt-1 text-xs font-medium">{props.iconName}</span>;
+    return <span className="mt-1 text-xs font-bold">{props.iconName}</span>;
   };
 
   return (

@@ -38,10 +38,6 @@ type UpdateProfileType = {
 
 export default function EditProfile(props: ProfileEditProps) {
   const [open, setOpen] = useState(false);
-  // const [user_id, setUser_id] = useState<number | null>(null);
-  // const [session_id, setSession_id] = useState<string | null>(null);
-  // const [selectedImage, setSelectedImage] = useState<string | null>(props.user.profileImagePath);
-  // const router = useRouter();
   const method = useForm<UpdateProfileType>({
     mode: "onChange",
     defaultValues: {
@@ -54,57 +50,11 @@ export default function EditProfile(props: ProfileEditProps) {
     resolver: zodResolver(EditProfileValidation)
   });
 
-  // useEffect(() => {
-  //   const userId = Number(localStorage.getItem("user_id"));
-  //   const sessionId = localStorage.getItem("session_id");
-  //   if (userId && sessionId) {
-  //     setUser_id(userId);
-  //     setSession_id(sessionId);
-  //   } else {
-  //     console.error("認証されていません");
-  //     router.push("/auth/sign-in");
-  //   }
-  // }, [router]);
-
-  // const urlToFile = async (url: string, fileName: string): Promise<File> => {
-  //   const res = await fetch(url);
-  //   const blob = await res.blob();
-  //   return new File([blob], fileName, { type: "image/png" });
-  // };
-
-  // const formSubmit: SubmitHandler<UpdateProfileType> = async (formData) => {
-  //   const addedFormData = {...formData, user_id};
-  //   delete addedFormData.profile_image_path;
-
-  //   const postData = new FormData();
-  //   postData.append("json_data", JSON.stringify(addedFormData));
-  //   if (selectedImage) {
-  //     const file = await urlToFile(selectedImage, "profile_image.jpg");
-  //     postData.append("photo", file);
-  //   } else {
-  //     postData.append("photo", "");
-  //   }
-
-  //   const loadingToast = toast.loading("投稿中...");
-  //   try {
-  //     // await updateProfile(postData, session_id);
-  //     toast.success("プロフィールの更新に成功しました！", { id: loadingToast });
-  //     setTimeout(() => {
-  //       toast.dismiss(loadingToast);
-  //       setOpen(false);
-  //     }, 1000);
-  //   } catch (error) {
-  //     toast.error("プロフィールの更新に失敗しました。",  { id: loadingToast });
-  //     console.error("プロフィールの更新に失敗しました:", error);
-  //     setOpen(false);
-  //   }
-  // }
-
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
         <Button className="w-full bg-orange-500 hover:bg-orange-600 text-white gap-4">
-          <p className="text-base">編集</p>
+          <p className="font-bold">編集</p>
           <Pencil />
         </Button>
       </DialogTrigger>

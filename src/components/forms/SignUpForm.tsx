@@ -39,7 +39,7 @@ export default function SignUpForm(props: SignUpFormProps) {
             className="mt-8 space-y-3"
           >
             <div>
-              <label htmlFor="userName">ユーザー名</label>
+              <Label htmlFor="userName">ユーザー名</Label>
               <div className="relative">
                 <div className="absolute top-1/3 left-3 -translate-y-[45%] pointer-events-none">
                   <User className="h-5 w-5 text-gray-400" />
@@ -144,7 +144,7 @@ export default function SignUpForm(props: SignUpFormProps) {
                 </p>
               </div>
             </div>
-            <Button type="submit" className="w-full bg-orange-500 mt-4">
+            <Button type="submit" className="w-full bg-orange-500 mt-4 font-bold">
               アカウント作成
             </Button>
           </form>
@@ -166,7 +166,7 @@ export default function SignUpForm(props: SignUpFormProps) {
 
           <p className="mt-6 text-sm text-center text-gray-500">
             すでにアカウントをお持ちの方は{" "}
-            <Link href="/auth/signIn" className="text-orange-500">
+            <Link href="/auth/signIn" className="text-orange-500 font-bold">
               ログイン
             </Link>
           </p>
