@@ -1,14 +1,7 @@
-import Header from "@/components/blocks/header/Header";
-import PostsCarousel from "@/components/posts/PostsCarousel";
 import { GetAllPosts } from "@/utils/api/posts/get/api";
+import LandingPage from "./client";
 
-export default async function LandingPage() {
+export default async function LandingWrapper() {
   const posts = await GetAllPosts();
-
-  return (
-    <>
-      <Header />
-      <PostsCarousel posts={posts} />
-    </>
-  );
+  return <LandingPage posts={posts} />;
 }

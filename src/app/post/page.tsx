@@ -6,6 +6,7 @@ import { PostFormSubmit } from "@/components/forms/functions/PostFormSubmit";
 import PostForm from "@/components/forms/PostForm";
 import { PostFormValidation } from "@/utils/validations/PostFormValidation";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 
 type PostFormType = {
@@ -17,6 +18,7 @@ type PostFormType = {
 };
 
 export default function PostPage() {
+  const router = useRouter();
   const method = useForm<PostFormType>({
     mode: "onChange",
     defaultValues: {
@@ -30,9 +32,9 @@ export default function PostPage() {
 
   return (
     <div>
-      <Header onSubmit={method.handleSubmit(PostFormSubmit)} />
+      <Header onSubmit={method.handleSubmit(PostFormSubmit(router))} />
       <PostForm
-        onSubmit={method.handleSubmit(PostFormSubmit)}
+        onSubmit={method.handleSubmit(PostFormSubmit(router))}
         control={method.control}
         errors={method.formState.errors}
       />

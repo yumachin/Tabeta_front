@@ -11,7 +11,7 @@ import { useState } from "react";
 type PostsProps = {
   type?: string;
   globalPosts?: PostsType[] | null;
-  followingPosts?: PostsType[] | null;
+  followPosts?: PostsType[] | null;
 }
 
 type PostsType = {
@@ -29,7 +29,7 @@ type PostsType = {
 
 export default function Posts(props: PostsProps) {
   const defaultPostImage = assets.defaultPostImage.src;
-  const list = props.type === "globalPosts" ? props.globalPosts : props.followingPosts;
+  const list = props.type === "globalPosts" ? props.globalPosts : props.followPosts;
   const pathname =usePathname();
 
   if (!list || list.length === 0) {
@@ -40,15 +40,18 @@ export default function Posts(props: PostsProps) {
     <div className={`flex flex-col px-2 ${pathname === "/dashboard" && "mb-16"}`}>
       {
         list.map((post: PostsType) =>  {
-          const [imgSrc, setImgSrc] = useState(
-            `${process.env.NEXT_PUBLIC_API_URL}/storage/${post.imagePath}`
-          );
+          const [imgSrc, setImgSrc] = useState(() => {
+            return post?.imagePath
+              ? `${process.env.NEXT_PUBLIC_API_URL}/storage/${post.imagePath}`
+              : defaultPostImage;
+          });
 
           return (
             <div key={post.id} className="py-3 border-b border-gray-200">
               <PostHeader postUserInf={post.postUserInf} createdAt={post.createdAt} pathname={pathname} />
               <div className="overflow-hidden bg-gray-100 rounded-lg aspect-square">
                 <Image
+                  // src={defaultPostImage}
                   src={imgSrc}
                   width={600}
                   height={600}

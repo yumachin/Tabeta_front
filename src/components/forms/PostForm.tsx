@@ -30,12 +30,10 @@ type PostFormType = {
 export default function PostForm(props: PostFormProps) {
   return (
     <form 
-      className="container px-4 py-6 mx-auto max-w-2xl"
+      className="container px-4 py-6 mb-16 mx-auto max-w-2xl"
       onSubmit={props.onSubmit}
     >
-      <Label htmlFor="ImagePath" className="mb-3">
-        写真
-      </Label>
+      <Label htmlFor="ImagePath" className="mb-3">写真</Label>
       <Controller
         control={props.control}
         name="imagePath"
@@ -121,7 +119,7 @@ export default function PostForm(props: PostFormProps) {
           <Textarea
             id="description"
             placeholder="説明を入力"
-            className="w-full h-[200px] resize-none"
+            className="w-full h-[140px] resize-none"
             {...field}
           />
         )}

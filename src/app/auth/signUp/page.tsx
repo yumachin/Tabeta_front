@@ -26,6 +26,7 @@ export default function SignUpPage() {
   });
 
   const onSubmit = async (formData: SignUpFormType) => {
+    console.log("通ったよ")
     const success = await SignUpFormSubmit(formData);
     setTimeout(() => {
       toast.remove();

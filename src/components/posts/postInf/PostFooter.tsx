@@ -19,7 +19,6 @@ type Post = {
 }
 
 export default function PostFooter(props: PostFooterProps) {
-  console.log(props.post.likes)
   return (
     <div className="mx-2">
       <div className="flex items-center justify-between mt-3">
