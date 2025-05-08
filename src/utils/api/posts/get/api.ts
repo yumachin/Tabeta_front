@@ -21,18 +21,18 @@ export const GetAllPosts = async () => {
 };
 
 // ➁ フォローしている人の投稿を取得
-export const getFollowedAllPosts = async (user_id: number | null, session_id: string | null) => {
+export const GetFollowedAllPosts = async (userId: string | undefined, sessionId: string | undefined) => {
   try {
-    if (!session_id || !user_id) {
+    if (!sessionId || !userId) {
       throw new Error("セッションID, 又はユーザーIDが無効");
     }
     const res = await fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/follow-post`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": session_id
+        "Authorization": sessionId
       },
-      body: JSON.stringify({ user_id }),
+      body: JSON.stringify({ user_id: userId }),
       cache: "no-store"
     });
     const data = await res.json();

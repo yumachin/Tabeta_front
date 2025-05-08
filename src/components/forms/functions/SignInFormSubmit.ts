@@ -12,8 +12,8 @@ export const SignInFormSubmit = async (formData: SignInFormType) => {
 
   try {
     const res = await SignIn(formData);
-    const userId = res[0].id;
-    const sessionId = res[0].sessionId
+    const userId = res.id;
+    const sessionId = res.sessionId
     localStorage.setItem("userId", userId);
     localStorage.setItem("sessionId", sessionId);
     toast.success(

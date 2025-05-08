@@ -27,13 +27,13 @@ export const SignUp = async (formData: SignUpType) => {
         password: formData.password
       }),
     });
-
+  
     if (!res.ok) {
       throw new Error("サインアップに失敗しました");
     }
 
     const data = await res.json();
-    const camelDetails = camelcaseKeys(data.details, { deep: true });
+    const camelDetails = camelcaseKeys(data.details[0], { deep: true });
     return camelDetails;
   } catch (error) {
     console.error("サインアップAPIのエラー", error);
@@ -60,7 +60,7 @@ export const SignIn = async (formData: SignInType) => {
     }
   
     const data = await res.json();
-    const camelDetails = camelcaseKeys(data.details, { deep: true });
+    const camelDetails = camelcaseKeys(data.details[0], { deep: true });
     return camelDetails;
   } catch (error) {
     console.error("サインインAPIのエラー", error);

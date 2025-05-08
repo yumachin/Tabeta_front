@@ -14,8 +14,8 @@ export const SignUpFormSubmit = async (formData: SignUpFormType) => {
 
   try {
     const res = await SignUp(formData);
-    const userId = res.details[0].id;
-    const sessionId = res.details[0].sessionId
+    const userId = res.id;
+    const sessionId = res.sessionId
     localStorage.setItem("userId", userId);
     localStorage.setItem("sessionId", sessionId);
     toast.success(

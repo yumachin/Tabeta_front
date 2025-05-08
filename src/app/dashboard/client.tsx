@@ -22,48 +22,14 @@ export type PostedUserInfType = {
   profileImagePath: string;
 }
 
-export default function DashboardPage({ posts }: { posts: Post[] }) {
+type DashboardPageProps = {
+  posts: Post[];
+  followPosts: Post[];
+}
+
+export default function DashboardPage(props: DashboardPageProps) {
   const [buttonState, setButtonState] = useState<number>(0);
   const sliderRef = useRef<Slider | null>(null);
-
-  // const posts: GetLPPost[] = [
-  //   {
-  //     id: 1,
-  //     post_user_inf: {
-  //       id: 1,
-  //       user_name: "ゆまちん",
-  //       profile_image_path: "/placeholder.svg?height=40&width=40"
-  //     },
-  //     image_path: "/placeholder.svg?height=600&width=600",
-  //     created_at: "2025-03-09T12:34:56Z",
-  //     likes: 114514,
-  //     description: null
-  //   },
-  //   {
-  //     id: 2,
-  //     post_user_inf: {
-  //       id: 2,
-  //       user_name: "きよさん",
-  //       profile_image_path: "/placeholder.svg?height=40&width=40"
-  //     },
-  //     image_path: "/placeholder.svg?height=600&width=600",
-  //     created_at: "2025-03-07T12:34:56Z",
-  //     likes: 4545,
-  //     description: "牡蠣を食べました！"
-  //   },
-  //   {
-  //     id: 3,
-  //     post_user_inf: {
-  //       id: 3,
-  //       user_name: "こーせい",
-  //       profile_image_path: "/placeholder.svg?height=40&width=40"
-  //     },
-  //     image_path: "/placeholder.svg?height=600&width=600",
-  //     created_at: "2025-03-05T12:34:56Z",
-  //     likes: 123,
-  //     description: "React Native使ったよ!"
-  //   }
-  // ];
 
   return (
     <>
@@ -74,7 +40,8 @@ export default function DashboardPage({ posts }: { posts: Post[] }) {
         setButtonState={setButtonState}
       />
       <PostsCarousel
-        posts={posts}
+        posts={props.posts}
+        followPosts={props.followPosts}
         ref={sliderRef}
         buttonState={buttonState}
         setButtonState={setButtonState}

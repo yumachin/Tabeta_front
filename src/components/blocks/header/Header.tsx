@@ -41,7 +41,7 @@ export default function Header(props: HeaderProps) {
         {pathname === "/landing" && <AuthButtons />}
         {pathname === "/profile" && <SettingButton />}
         {pathname === "/post" && (
-          <Button onClick={props.onSubmit} className="text-xs bg-orange-500">
+          <Button onClick={props.onSubmit} className="text-xs font-bold bg-orange-500">
             シェア
           </Button>
         )}
